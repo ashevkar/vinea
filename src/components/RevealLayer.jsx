@@ -37,11 +37,11 @@ export default function RevealLayer() {
           ease: "power2.inOut",
         })
         .to(layerRef.current, {
-          clipPath: "circle(72% at 50% -38%)",
+          clipPath: "circle(62% at 50% -38%)",
           ease: "power2.inOut",
         })
         .to(layerRef.current, {
-          clipPath: "circle(72% at 50% -120%)",
+          clipPath: "circle(62% at 50% -120%)",
           ease: "power3.out",
         });
 
