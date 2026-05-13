@@ -25,9 +25,9 @@ export default function Hero() {
 
       {/* Tagline — absolutely pinned to bottom-left */}
       <p className="hero-tagline" ref={taglineRef}>
-        Discover artisanal wines curated from<br />
-        vineyards around the world. Every<br />
-        bottle tells a story that is smooth,<br />
+        Discover artisanal wines curated from
+        vineyards around the world. Every
+        bottle tells a story that is smooth,
         bold and timeless.
       </p>
 
@@ -42,6 +42,15 @@ export default function Hero() {
       {/* Shop Now button */}
       <div className="hero-cta" ref={btnRef}>
         <button className="shop-btn">Shop Now ↗</button>
+      </div>
+
+      {/* Static bottle — centered at hero bottom */}
+      <div className="hero-bottle">
+        <img
+          src="/photos/Rose.png"
+          alt="Blossom Rosé wine bottle"
+          draggable="false"
+        />
       </div>
     </section>
   )

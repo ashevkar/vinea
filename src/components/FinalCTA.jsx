@@ -50,7 +50,13 @@ export default function FinalCTA() {
 
       {/* Right — bottle + badge */}
       <div className="finalcta-right">
-      
+        <img
+          src="/photos/Rose.png"
+          alt="Blossom Rosé wine bottle"
+          className="finalcta-bottle"
+          ref={bottleRef}
+          draggable="false"
+        />
 
         <div className="hero-badge finalcta-badge" ref={badgeRef}>
           <div className="star-badge">

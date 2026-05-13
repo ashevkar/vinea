@@ -39,9 +39,6 @@ img {
   display: block;
 }
 
-
-
-
 /* ─── Navbar ──────────────────────────────────── */
 .navbar {
   width: 100%;
@@ -130,14 +127,14 @@ img {
 /* Tagline pinned to bottom-left — matches Figma */
 .hero-tagline {
   position: absolute;
-  bottom: 72px;
-  left: 52px;
+  bottom: 10%;
+    left: 6%;
   z-index: 3;
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
   line-height: 1.72;
   color: rgba(17, 17, 24, 0.62);
-  max-width: 220px;
+  max-width: 250px;
 }
 
 /* Full-coverage pink layer — revealed as a circle via clip-path animation */
@@ -153,8 +150,8 @@ img {
 /* 25% OFF starburst */
 .hero-badge {
   position: absolute;
-  right: 148px;
-  /* bottom: 110px; */
+  right: calc(10% + 75px);
+  bottom: 32%;
   z-index: 10;
 }
 .star-badge {
@@ -167,15 +164,29 @@ img {
   background: #f5c518;
   clip-path: polygon(
     50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
+    57% 24%,
+    75% 7%,
+    72% 32%,
+    96% 24%,
+    81% 45%,
+    100% 50%,
+    81% 55%,
+    96% 76%,
+    72% 68%,
+    75% 93%,
+    57% 76%,
+    50% 100%,
+    43% 76%,
+    25% 93%,
+    28% 68%,
+    4% 76%,
+    19% 55%,
+    0% 50%,
+    19% 45%,
+    4% 24%,
+    28% 32%,
+    25% 7%,
+    43% 24%
   );
   color: #111118;
   animation: badge-pulse 3s ease-in-out infinite;
@@ -205,8 +216,8 @@ img {
 /* Shop Now button — bottom-right corner */
 .hero-cta {
   position: absolute;
-  right: 52px;
-  bottom: 48px;
+      right: 120px;
+    bottom: 80px;
   z-index: 10;
 }
 .shop-btn {
@@ -250,8 +261,8 @@ img {
   z-index: 1;
   pointer-events: none;
   /* crisp ring + soft glow on the clipped circle edge */
-  filter: drop-shadow(0 0 2px rgba(255,255,255,0.95))
-          drop-shadow(0 0 10px rgba(255,255,255,0.45));
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.95))
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.45));
 }
 
 /* SVG ring that outlines the hero circle, fades on scroll */
@@ -263,13 +274,7 @@ img {
   overflow: visible;
 }
 
-/* ─── Sticky Bottle ───────────────────────────── */
-/*
-  Three-layer approach to prevent GSAP transform conflicts:
-  1. .bottle-anchor  — position:fixed, top/left offsets (never touched by GSAP)
-  2. .bottle-center  — translate(-50%,-50%) centering  (never touched by GSAP)
-  3. .bottle-mover   — GSAP animates ONLY this: y, x, rotation, opacity
-*/
+/* ─── Animated Bottle (desktop) ──────────────── */
 .bottle-anchor {
   position: fixed;
   top: 65%;
@@ -292,13 +297,34 @@ img {
   -webkit-user-drag: none;
 }
 
+/* ─── Static Bottle (mobile hero only) ───────── */
+/* Hidden on desktop — animated bottle takes over */
+.hero-bottle {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: none;
+}
+.hero-bottle img {
+  height: clamp(260px, 46vh, 510px);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.2));
+  user-select: none;
+  -webkit-user-drag: none;
+  display: block;
+}
+
 /* ─── Timeless Craft ──────────────────────────── */
 .timeless-section {
   position: relative;
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 280px 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   padding: 88px 0;
   z-index: 2;
@@ -307,10 +333,10 @@ img {
   padding: 0 64px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 .timeless-right {
-  direction: rtl;
+  padding-left: 64px;
   padding-right: 64px;
 }
 .timeless-left {
@@ -334,10 +360,6 @@ img {
 }
 .timeless-actions {
   margin-top: 40px;
-}
-/* Center column — empty space the fixed bottle drifts through */
-.timeless-center {
-  min-height: 560px;
 }
 
 /* ─── Features ────────────────────────────────── */
@@ -422,7 +444,6 @@ img {
   align-items: flex-end;
   justify-content: center;
   flex: 1;
-
 }
 .vault-card {
   display: flex;
@@ -432,7 +453,6 @@ img {
   cursor: pointer;
   height: 100%;
   flex: 1 1 300px;
-
 }
 
 .vault-bottle {
@@ -494,7 +514,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 80px 52px 80px 64px;
+  padding: 80px 52px 80px 104px;
   overflow: hidden;
   position: relative;
 }
@@ -553,6 +573,7 @@ img {
 }
 
 .finalcta-bottle {
+  display: none; /* animated bottle handles desktop — shown on mobile only */
   height: clamp(420px, 55vh, 640px);
   width: auto;
   object-fit: contain;
@@ -638,8 +659,9 @@ img {
   border: none;
   cursor: pointer;
   padding: 0;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-              background 0.3s ease;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -647,7 +669,7 @@ img {
 
 /* larger hit area without affecting layout */
 .section-dot::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: -8px;
   border-radius: 50%;
@@ -669,7 +691,9 @@ img {
   white-space: nowrap;
   opacity: 0;
   transform: translateX(6px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
   pointer-events: none;
   background: #fff;
   padding: 4px 10px;
@@ -687,50 +711,90 @@ img {
 
 /* Tablet — large (≤ 900px) */
 @media (max-width: 900px) {
-  .navbar { padding: 18px 32px; }
-  .navbar-links { gap: 24px; }
-  .vault-row { margin: 0 2em; }
+  .navbar {
+    padding: 18px 32px;
+  }
+  .navbar-links {
+    gap: 24px;
+  }
+  .vault-row {
+    margin: 0 2em;
+  }
 }
 
 /* Tablet (≤ 768px) */
 @media (max-width: 768px) {
   /* Navbar */
-  .navbar { padding: 16px 24px; }
-  .navbar-links { display: none; }
+  .navbar {
+    padding: 16px 24px;
+  }
+  .navbar-links {
+    display: none;
+  }
 
-  /* Bottle — scale down but keep visible on tablet */
-  .bottle-mover img { height: 340px; }
+  /* Hero bottle — scale down on tablet */
+  .hero-bottle img {
+    height: clamp(220px, 38vh, 360px);
+  }
 
-  /* Timeless Craft — single column */
+  /* Timeless Craft — single column, locked to viewport */
   .timeless-section {
     grid-template-columns: 1fr;
-    height: auto;
-    min-height: 100vh;
-    padding: 80px 32px;
-    gap: 48px;
+    height: 100vh;
+    overflow: hidden;
+    padding: 56px 32px 40px;
+    gap: 28px;
+    align-content: center;
   }
-  .timeless-center { display: none; }
-  .timeless-col { padding: 0; align-items: flex-start; }
-  .timeless-right { direction: ltr; padding-right: 0; }
-  .timeless-left { padding-left: 0; }
-  .timeless-body { font-size: 17px; }
+  .timeless-col {
+    padding: 0;
+    align-items: flex-start;
+  }
+  .timeless-right {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .timeless-left {
+    padding-left: 0;
+  }
+  .timeless-body {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .timeless-heading {
+    font-size: clamp(22px, 3.5vw, 36px);
+    margin-bottom: 12px;
+  }
+  .timeless-actions {
+    margin-top: 20px;
+  }
 
-  /* Features — wrap to 2-column grid */
-  .features-section { height: auto; min-height: 60vh; overflow: visible; }
+  /* Features — icon grid, locked to viewport */
+  .features-section {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
   .features-row {
     flex-wrap: wrap;
-    padding: 80px 32px 48px;
+    padding: 48px 32px;
     justify-content: center;
     gap: 32px;
+    width: 100%;
   }
   .feature-item {
-    margin-bottom: 0 !important; /* override arc inline styles */
+    margin-bottom: 0 !important;
     width: calc(30% - 16px);
     max-width: 160px;
   }
 
-  /* Vault — horizontal scroll strip */
-  .vault-section { padding: 40px 0 32px; height: auto; min-height: 70vh; }
+  /* Vault — locked to viewport, horizontal scroll strip */
+  .vault-section {
+    padding: 32px 0 16px;
+    height: 100vh;
+    overflow: hidden;
+  }
   .vault-row {
     margin: 0;
     overflow-x: auto;
@@ -748,56 +812,160 @@ img {
     scroll-snap-align: start;
   }
   .vault-bottle--regular,
-  .vault-bottle--featured { height: clamp(200px, 36vh, 280px); }
-  .vault-price { font-size: 18px; }
-  .vault-name { font-size: 12px; }
+  .vault-bottle--featured {
+    height: clamp(160px, 28vh, 240px);
+  }
+  .vault-price {
+    font-size: 18px;
+  }
+  .vault-name {
+    font-size: 12px;
+  }
 
-  /* Final CTA — stack */
+  /* Final CTA — stacked, locked to viewport */
   .finalcta-section {
     flex-direction: column;
-    padding: 64px 32px;
-    gap: 48px;
+    padding: 48px 32px;
+    gap: 32px;
     justify-content: center;
+    height: 100vh;
+    overflow: hidden;
   }
-  .finalcta-left { flex: none; width: 100%; gap: 32px; }
-  .finalcta-right { flex: none; width: 100%; min-height: 240px; }
+  .finalcta-left {
+    flex: none;
+    width: 100%;
+    gap: 24px;
+  }
+  .finalcta-right {
+    width: 100%;
+    min-height: 180px;
+  }
 }
 
 /* Mobile (≤ 640px) */
 @media (max-width: 640px) {
-  .section-dots { display: none; }
+  /* Lock every section to exactly one viewport — nothing bleeds between sections */
+  .hero-section,
+  .timeless-section,
+  .features-section,
+  .vault-section,
+  .finalcta-section {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Swap bottles: hide animated, show static */
+  .bottle-anchor  { display: none; }
+  .hero-bottle    { display: block; }
+  .finalcta-bottle { display: block; }
+
+  .section-dots {
+    display: none;
+  }
   /* Navbar */
-  .navbar { padding: 14px 20px; }
-  .navbar-logo { font-size: 20px; }
+  .navbar {
+    padding: 14px 20px;
+  }
+  .navbar-logo {
+    font-size: 20px;
+  }
 
   /* Hero */
-  .hero-tagline { left: 20px; bottom: 60px; }
-  .hero-badge { right: 20px; }
-  .hero-cta { right: 20px; bottom: 16px; }
-  .star-badge { width: 110px; height: 110px; }
-  .star-badge-pct { font-size: 22px; }
+  .hero-tagline {
+    left: 20px;
+    top: 30%;
+    
+  }
+  .hero-badge {
+    left: auto;
+    right: 16px;
+    bottom: 39%;
+  }
+  .hero-cta {
+    right: 20px;
+    bottom: 27%;
+  }
+  .shop-btn {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  .star-badge {
+    width: 110px;
+    height: 110px;
+  }
+  .star-badge-pct {
+    font-size: 22px;
+  }
+.hero-bottle{
+  bottom: 5%;
+}
+  /* Hero bottle — smaller on mobile */
+  .hero-bottle img {
+  height: clamp(380px, 76vh, 480px);
+  transform: scale(2);
+  transform-origin: center center;
 
-  /* Bottle — hide; sticky scroll effect breaks on mobile */
-  .bottle-anchor { display: none; }
+  }
 
   /* Timeless Craft */
-  .timeless-section { padding: 64px 20px; gap: 40px; }
-  .timeless-heading { font-size: clamp(24px, 7vw, 36px); }
-  .timeless-body { font-size: 15px; line-height: 1.7; }
+  .timeless-section {
+    padding: 64px 20px;
+    gap: 40px;
+  }
+  .timeless-heading {
+    font-size: clamp(24px, 7vw, 36px);
+  }
+  .timeless-body {
+    font-size: 15px;
+    line-height: 1.7;
+  }
 
   /* Features */
-  .features-row { padding: 48px 20px 40px; }
+  .features-row {
+    padding: 48px 20px 40px;
+  }
 
   /* Vault */
-  .vault-heading { font-size: clamp(32px, 9vw, 48px); padding: 0 20px; }
-  .vault-row { padding: 0 20px 20px; }
+  .vault-heading {
+    font-size: clamp(32px, 9vw, 48px);
+    padding: 0 20px;
+  }
+  .vault-row {
+   display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0px;
+   justify-items: center;
+   align-items: start;
+ width: 100%;
+    max-width: 100%;
+    align-items: start;
+   }
+  .vault-card.rose-card {
+    display: none;
+  }
 
   /* Final CTA */
-  .finalcta-section { padding: 52px 20px; gap: 36px; }
-  .finalcta-line { font-size: clamp(44px, 14vw, 80px); }
-  .finalcta-btn { font-size: 15px; padding: 14px 32px; }
+  .finalcta-section {
+    padding: 52px 20px;
+  }
+  .finalcta-line {
+    font-size: clamp(44px, 14vw, 80px);
+  }
+  
+  
+  .finalcta-btn {
+    font-size: 15px;
+    padding: 14px 32px;
+  }
 
   /* Footer */
-  .footer { padding: 48px 20px; gap: 24px; }
-  .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px 28px; }
+  .footer {
+    padding: 48px 20px;
+    gap: 24px;
+  }
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 28px;
+  }
 }

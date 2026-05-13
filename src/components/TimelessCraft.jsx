@@ -37,10 +37,9 @@ export default function TimelessCraft() {
           American oak barrels that add depth and complexity.
         </p>
       </div>
-
-      {/* Centre — fixed bottle drifts through this space visually */}
-      <div className="timeless-center" />
-
+<div>
+        {/* Animated bottle — absolutely positioned, animates on desktop only */}
+</div>
       {/* Right — About Vintale */}
       <div className="timeless-col  timeless-right">
         <h2 className="timeless-heading">About Vintale</h2>
