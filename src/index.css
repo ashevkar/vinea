@@ -1,0 +1,803 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #f0175c;
+  --color-dark: #111118;
+  --color-badge: #f5c518;
+}
+
+/* ─── Reset ──────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  /* scroll-behavior handled by Lenis */
+}
+body {
+  font-family: "DM Sans", sans-serif;
+  background: #fff;
+  color: #111118;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Playfair Display", serif;
+}
+a {
+  text-decoration: none;
+}
+img {
+  display: block;
+}
+
+
+
+
+/* ─── Navbar ──────────────────────────────────── */
+.navbar {
+  width: 100%;
+  padding: 22px 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  position: relative;
+  z-index: 200;
+}
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
+  font-weight: 700;
+  color: #111118;
+  letter-spacing: -0.025em;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 42px;
+  list-style: none;
+}
+.navbar-links a {
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #111118;
+  transition: color 0.2s ease;
+}
+.navbar-links a:hover {
+  color: #f0175c;
+}
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1.5px solid #e8e8e8;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #111118;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+.icon-btn:hover {
+  border-color: #f0175c;
+  color: #f0175c;
+}
+
+/* ─── Hero ────────────────────────────────────── */
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
+
+/* Huge centered heading — matches Figma scale */
+.hero-heading {
+  position: relative;
+  z-index: 3;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(72px, 15.5vw, 224px);
+  font-weight: 900;
+  line-height: 0.87;
+  letter-spacing: -0.04em;
+  color: #111118;
+  text-align: center;
+  width: 100%;
+  padding: 52px 0 0;
+}
+
+/* Tagline pinned to bottom-left — matches Figma */
+.hero-tagline {
+  position: absolute;
+  bottom: 72px;
+  left: 52px;
+  z-index: 3;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  line-height: 1.72;
+  color: rgba(17, 17, 24, 0.62);
+  max-width: 220px;
+}
+
+/* Full-coverage pink layer — revealed as a circle via clip-path animation */
+.hero-blob {
+  position: absolute;
+  inset: 0;
+  background: #f0175c;
+  clip-path: circle(20% at 50% 100%);
+  will-change: clip-path;
+  z-index: 1;
+}
+
+/* 25% OFF starburst */
+.hero-badge {
+  position: absolute;
+  right: 148px;
+  /* bottom: 110px; */
+  z-index: 10;
+}
+.star-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 144px;
+  height: 144px;
+  background: #f5c518;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  color: #111118;
+  animation: badge-pulse 3s ease-in-out infinite;
+}
+@keyframes badge-pulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.06) rotate(3deg);
+  }
+}
+.star-badge-pct {
+  font-family: "DM Sans", sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+  padding-top: 10px;
+}
+.star-badge-off {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Shop Now button — bottom-right corner */
+.hero-cta {
+  position: absolute;
+  right: 52px;
+  bottom: 48px;
+  z-index: 10;
+}
+.shop-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: hsl(0, 0%, 100%);
+  color: black;
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 30px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(17, 17, 24, 0.15);
+}
+.shop-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(17, 17, 24, 0.22);
+}
+.shop-btn-pink {
+  background: #f0175c;
+  box-shadow: 0 4px 20px rgba(240, 23, 92, 0.3);
+}
+.shop-btn-pink:hover {
+  box-shadow: 0 8px 28px rgba(240, 23, 92, 0.4);
+}
+
+/* ─── Reveal Layer ────────────────────────────── */
+/* Single fixed pink layer animated by RevealLayer.jsx across hero→timeless→features */
+.reveal-layer {
+  position: fixed;
+  inset: 0;
+  background: #f0175c;
+  clip-path: circle(30% at 50% 100%);
+  will-change: clip-path, filter;
+  z-index: 1;
+  pointer-events: none;
+  /* crisp ring + soft glow on the clipped circle edge */
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.95))
+          drop-shadow(0 0 10px rgba(255,255,255,0.45));
+}
+
+/* SVG ring that outlines the hero circle, fades on scroll */
+.hero-ring-svg {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ─── Sticky Bottle ───────────────────────────── */
+/*
+  Three-layer approach to prevent GSAP transform conflicts:
+  1. .bottle-anchor  — position:fixed, top/left offsets (never touched by GSAP)
+  2. .bottle-center  — translate(-50%,-50%) centering  (never touched by GSAP)
+  3. .bottle-mover   — GSAP animates ONLY this: y, x, rotation, opacity
+*/
+.bottle-anchor {
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  z-index: 50;
+  pointer-events: none;
+}
+.bottle-center {
+  transform: translate(-50%, -50%);
+}
+.bottle-mover {
+  will-change: transform, opacity;
+}
+.bottle-mover img {
+  height: 510px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.2));
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ─── Timeless Craft ──────────────────────────── */
+.timeless-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 280px 1fr;
+  align-items: center;
+  padding: 88px 0;
+  z-index: 2;
+}
+.timeless-col {
+  padding: 0 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timeless-right {
+  direction: rtl;
+  padding-right: 64px;
+}
+.timeless-left {
+  padding-left: 64px;
+}
+.timeless-heading {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(28px, 3.2vw, 48px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.05;
+  margin-bottom: 22px;
+  letter-spacing: -0.02em;
+}
+.timeless-body {
+  font-family: "DM Sans", sans-serif;
+  font-size: 22px;
+  line-height: 1.8;
+  color: rgba(248, 248, 248, 0.7);
+  max-width: 400px;
+}
+.timeless-actions {
+  margin-top: 40px;
+}
+/* Center column — empty space the fixed bottle drifts through */
+.timeless-center {
+  min-height: 560px;
+}
+
+/* ─── Features ────────────────────────────────── */
+.features-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+  z-index: 2;
+}
+
+/* Bottle ghost space at top so blob meets it visually */
+.features-top-space {
+  height: 60px;
+}
+
+.features-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 460px 60px 0;
+}
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.feature-ring {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 2px solid #f0175c;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s ease;
+}
+.feature-ring:hover {
+  background: #fef0f4;
+}
+.feature-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #111118;
+  text-align: center;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+.feature-img {
+  width: auto;
+  height: 20vh;
+  object-fit: contain;
+}
+
+/* ─── Vintale Vault ───────────────────────────── */
+.vault-section {
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  padding: 56px 52px 48px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.vault-heading {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(65px, 6.6vw, 80px);
+  font-weight: 700;
+  color: #111118;
+  text-align: center;
+  letter-spacing: -0.025em;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+.vault-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex: 1;
+
+}
+.vault-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 100%;
+  flex: 1 1 300px;
+
+}
+
+.vault-bottle {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.vault-bottle--regular {
+  height: clamp(480px, 65vh, 660px);
+}
+.vault-bottle--featured {
+  height: clamp(480px, 65vh, 660px);
+}
+
+.vault-bottle img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.13));
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.4s ease;
+}
+.vault-card:hover .vault-bottle img {
+  transform: translateY(-18px);
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.18));
+}
+.vault-price {
+  font-family: "DM Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f0175c;
+  margin-top: 16px;
+}
+.vault-name {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111118;
+  margin-top: 4px;
+  text-align: center;
+}
+.vault-note {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #f0175c;
+  text-align: center;
+  margin-top: 24px;
+  flex-shrink: 0;
+  font-style: italic;
+}
+
+/* ─── Final CTA ───────────────────────────────── */
+.finalcta-section {
+  width: 100vw;
+  min-height: 100vh;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 52px 80px 64px;
+  overflow: hidden;
+  position: relative;
+}
+
+.finalcta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  flex: 0 0 55%;
+  z-index: 2;
+}
+
+.finalcta-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.finalcta-line {
+  display: block;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(64px, 9.5vw, 140px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.finalcta-line--dark {
+  color: #111118;
+}
+
+.finalcta-line--pink {
+  color: #f0175c;
+}
+
+.finalcta-btn {
+  font-size: 16px;
+  padding: 16px 40px;
+  background: #111118;
+  color: #fff;
+  border-radius: 100px;
+  width: fit-content;
+}
+.finalcta-btn:hover {
+  background: #1e1e2a;
+  transform: translateY(-2px);
+}
+
+.finalcta-right {
+  position: relative;
+  flex: 0 0 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.finalcta-bottle {
+  height: clamp(420px, 55vh, 640px);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 52px rgba(0, 0, 0, 0.18));
+  transform: rotate(8deg);
+  transform-origin: bottom center;
+}
+
+.finalcta-badge {
+  position: absolute;
+  bottom: 18%;
+  left: 4%;
+  right: auto;
+}
+
+/* ─── Footer ──────────────────────────────────── */
+.footer {
+  width: 100%;
+  background: #111118;
+  padding: 64px 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Playfair Display", serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.025em;
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+  list-style: none;
+}
+.footer-links a {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.2s ease;
+}
+.footer-links a:hover {
+  color: #fff;
+}
+.footer-divider {
+  width: 100%;
+  max-width: 640px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+.footer-copy {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.28);
+  text-align: center;
+}
+
+/* ─── Section Dots ────────────────────────────── */
+.section-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 300;
+  align-items: center;
+}
+
+.section-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(17, 17, 24, 0.22);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* larger hit area without affecting layout */
+.section-dot::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+}
+
+.section-dot--active {
+  background: #f0175c;
+  transform: scale(1.75);
+  box-shadow: 0 0 0 3px rgba(240, 23, 92, 0.18);
+}
+
+.section-dot-label {
+  position: absolute;
+  right: 20px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #111118;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  background: #fff;
+  padding: 4px 10px;
+  border-radius: 100px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.1);
+}
+
+.section-dot:hover .section-dot-label,
+.section-dot--active .section-dot-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── Responsive ──────────────────────────────── */
+
+/* Tablet — large (≤ 900px) */
+@media (max-width: 900px) {
+  .navbar { padding: 18px 32px; }
+  .navbar-links { gap: 24px; }
+  .vault-row { margin: 0 2em; }
+}
+
+/* Tablet (≤ 768px) */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar { padding: 16px 24px; }
+  .navbar-links { display: none; }
+
+  /* Bottle — scale down but keep visible on tablet */
+  .bottle-mover img { height: 340px; }
+
+  /* Timeless Craft — single column */
+  .timeless-section {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 100vh;
+    padding: 80px 32px;
+    gap: 48px;
+  }
+  .timeless-center { display: none; }
+  .timeless-col { padding: 0; align-items: flex-start; }
+  .timeless-right { direction: ltr; padding-right: 0; }
+  .timeless-left { padding-left: 0; }
+  .timeless-body { font-size: 17px; }
+
+  /* Features — wrap to 2-column grid */
+  .features-section { height: auto; min-height: 60vh; overflow: visible; }
+  .features-row {
+    flex-wrap: wrap;
+    padding: 80px 32px 48px;
+    justify-content: center;
+    gap: 32px;
+  }
+  .feature-item {
+    margin-bottom: 0 !important; /* override arc inline styles */
+    width: calc(30% - 16px);
+    max-width: 160px;
+  }
+
+  /* Vault — horizontal scroll strip */
+  .vault-section { padding: 40px 0 32px; height: auto; min-height: 70vh; }
+  .vault-row {
+    margin: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 0 24px 24px;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+  }
+  .vault-card {
+    flex: 0 0 auto;
+    width: 140px;
+    height: auto;
+    scroll-snap-align: start;
+  }
+  .vault-bottle--regular,
+  .vault-bottle--featured { height: clamp(200px, 36vh, 280px); }
+  .vault-price { font-size: 18px; }
+  .vault-name { font-size: 12px; }
+
+  /* Final CTA — stack */
+  .finalcta-section {
+    flex-direction: column;
+    padding: 64px 32px;
+    gap: 48px;
+    justify-content: center;
+  }
+  .finalcta-left { flex: none; width: 100%; gap: 32px; }
+  .finalcta-right { flex: none; width: 100%; min-height: 240px; }
+}
+
+/* Mobile (≤ 640px) */
+@media (max-width: 640px) {
+  .section-dots { display: none; }
+  /* Navbar */
+  .navbar { padding: 14px 20px; }
+  .navbar-logo { font-size: 20px; }
+
+  /* Hero */
+  .hero-tagline { left: 20px; bottom: 60px; }
+  .hero-badge { right: 20px; }
+  .hero-cta { right: 20px; bottom: 16px; }
+  .star-badge { width: 110px; height: 110px; }
+  .star-badge-pct { font-size: 22px; }
+
+  /* Bottle — hide; sticky scroll effect breaks on mobile */
+  .bottle-anchor { display: none; }
+
+  /* Timeless Craft */
+  .timeless-section { padding: 64px 20px; gap: 40px; }
+  .timeless-heading { font-size: clamp(24px, 7vw, 36px); }
+  .timeless-body { font-size: 15px; line-height: 1.7; }
+
+  /* Features */
+  .features-row { padding: 48px 20px 40px; }
+
+  /* Vault */
+  .vault-heading { font-size: clamp(32px, 9vw, 48px); padding: 0 20px; }
+  .vault-row { padding: 0 20px 20px; }
+
+  /* Final CTA */
+  .finalcta-section { padding: 52px 20px; gap: 36px; }
+  .finalcta-line { font-size: clamp(44px, 14vw, 80px); }
+  .finalcta-btn { font-size: 15px; padding: 14px 32px; }
+
+  /* Footer */
+  .footer { padding: 48px 20px; gap: 24px; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px 28px; }
+}
