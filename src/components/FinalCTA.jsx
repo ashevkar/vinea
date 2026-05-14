@@ -2,10 +2,12 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { usePageTransition } from '../context/TransitionContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function FinalCTA() {
+  const { navigateTo } = usePageTransition()
   const sectionRef = useRef(null)
   const textRef    = useRef(null)
   const bottleRef  = useRef(null)
@@ -44,7 +46,7 @@ export default function FinalCTA() {
         </div>
 
         <div ref={btnRef}>
-          <button className="shop-btn finalcta-btn">Shop Now &rsaquo;</button>
+          <button className="shop-btn finalcta-btn" onClick={() => navigateTo('/shop')}>Shop Now &rsaquo;</button>
         </div>
       </div>
 

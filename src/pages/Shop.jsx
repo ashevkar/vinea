@@ -2,6 +2,8 @@ import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import logo from '../assets/logo.jpg'
+
 
 const wines = [
   {
@@ -99,7 +101,9 @@ export default function Shop() {
         </button>
 
         <div className="shop-header-brand">
-          <span className="shop-logo-dot" />
+          {/* <span className="shop-logo-dot" /> */}
+           <img src={logo} alt="Vinea logo" width="52" height="52" />
+          
           <span className="shop-logo-text">Vinea</span>
         </div>
 
@@ -115,8 +119,8 @@ export default function Shop() {
       {/* Hero strip */}
       <div className="shop-hero-strip">
         <p className="shop-hero-eyebrow">The Collection</p>
-        <h1 className="shop-hero-title">Curated Wines,<br />World&#8209;Class Vineyards</h1>
-        <p className="shop-hero-sub">Each bottle is selected by our sommeliers from estate vineyards.<br />Free delivery on orders over $200.</p>
+        {/* <h1 className="shop-hero-title">Curated Wines,<br />World&#8209;Class Vineyards</h1> */}
+        {/* <p className="shop-hero-sub">Each bottle is selected by our sommeliers from estate vineyards.<br />Free delivery on orders over $200.</p> */}
       </div>
 
       {/* Grid */}
@@ -146,9 +150,7 @@ export default function Shop() {
         ))}
       </div>
 
-      <footer className="shop-footer">
-        <p>© 2026 Vinea. All rights reserved. · Drink responsibly.</p>
-      </footer>
+    
     </div>
   )
 }

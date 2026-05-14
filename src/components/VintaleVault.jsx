@@ -64,7 +64,7 @@ export default function VintaleVault() {
 
   return (
     <section className="vault-section" id="vault" ref={sectionRef}>
-      <h2 className="vault-heading">The Vintale Vault</h2>
+      <h2 className="vault-heading">The Vinea Vault</h2>
 
       <div className="vault-row" ref={rowRef}>
         {wines.map((wine, i) => (

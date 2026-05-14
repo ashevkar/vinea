@@ -42,9 +42,9 @@ export default function TimelessCraft() {
 </div>
       {/* Right — About Vintale */}
       <div className="timeless-col  timeless-right">
-        <h2 className="timeless-heading">About Vintale</h2>
+        <h2 className="timeless-heading">About Vinea</h2>
         <p className="timeless-body">
-          Vintale began with a belief that wine should be more than taste.
+          Vinea began with a belief that wine should be more than taste.
           Founded by friends with a passion for tradition and storytelling, we
           curate wines that reflect the craft and care of the people who make
           them. From small family-run vineyards to quiet cellars, our selections

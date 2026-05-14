@@ -1,10 +1,10 @@
 import { useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { usePageTransition } from '../context/TransitionContext'
 
 export default function Hero() {
-  const navigate = useNavigate()
+  const { navigateTo } = usePageTransition()
   const sectionRef = useRef(null)
   const headingRef = useRef(null)
   const taglineRef = useRef(null)
@@ -43,7 +43,7 @@ export default function Hero() {
 
       {/* Shop Now button */}
       <div className="hero-cta" ref={btnRef}>
-        <button className="shop-btn" onClick={() => navigate('/shop')}>Shop Now ↗</button>
+        <button className="shop-btn" onClick={() => navigateTo('/shop')}>Shop Now ↗</button>
       </div>
 
       {/* Static bottle — centered at hero bottom */}
